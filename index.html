@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>There Is No Spoon</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Some description about presentation">
+		<meta name="author" content="Andrew De Ponte">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -42,6 +42,349 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+				<section data-background="images/spoon_large.jpg" data-markdown>
+					<script type="text/template">
+            # There Is No Spoon
+
+            Created by [Andrew De Ponte](http://andrewdeponte.com) /
+            [@cyphactor](http://twitter.com/cyphactor)
+
+            <small>
+              Render from [grabcad.com](http://grabcad.com/library/there-is-no-spoon)
+            </small>
+					</script>
+				</section>
+
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Virtual Machines
+
+            <p>
+              <blockquote cite="http://en.wikipedia.org/wiki/Virtual_machine">
+                &ldquo;A virtual machine (VM) is a software-based emulation of
+                a computer. Virtual machines operate based on computer
+                architecture and functions of real or hypothetical
+                computer.&rdquo;
+              </blockquote>
+            </p>
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Bringing VMs to Developers
+					</script>
+        </section>
+        
+        <section data-markdown
+          data-background="images/desktop-maclike-screenshot1440-704485.jpg">
+					<script type="text/template">
+            ## Desktop Virtualization Software
+
+            - [VirtualBox](http://www.virtualbox.org/)
+            - [VMware Fusion](http://www.vmware.com/products/fusion/)
+
+            <br>
+            <small>Image from
+            [gastown.biz](http://www.gastown.biz/blog/uploaded_images/desktop-maclike-screenshot1440-704485.jpg)
+            </small>
+					</script>
+        </section>
+
+        <section data-markdown data-background="images/cloud.jpg">
+					<script type="text/template">
+            ## Cloud Virtualization Services
+
+            - [AWS EC2](http://aws.amazon.com/ec2)
+            - [Rackspace](http://www.rackspace.com/cloud/servers/)
+            - [Digital Ocean](https://www.digitalocean.com/)
+
+            <br>
+            <small>Image from
+            [wamsinc.com](http://www.wamsinc.com/tag/cloud-computing/)</small>
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Making things easier!
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Configuration Management
+            <span class="fragment">
+              <img src="images/logo-chef.png">
+              <br>
+              <small>
+              Logo from [getchef.com](http://www.getchef.com/chef/)
+              </small>
+            </span>
+
+            <span class="fragment">
+              <img src="images/puppet_logo.svg">
+              <br>
+              <small>
+              Logo from [puppetlabs.com](http://puppetlabs.com)
+              </small>
+            </span>
+					</script>
+        </section>
+
+        <section data-background="#ffffff">
+          <a href="http://vagrantup.com">
+            <img src="images/vagrant_logo.png" style="border: 0px; box-shadow:
+            0px 0px 0px;">
+          </a>
+          <br>
+          <small>
+            Logo from
+            <a
+              href="http://www.hashicorp.com/images/blog/a-new-look-for-vagrant/logo_wide-cab47086.png">hashicorp.com
+            </a>
+          </small>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            # State of the World
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Uses?
+
+            <ul>
+              <li class="fragment">Dev Environments</li>
+              <li class="fragment">CI Environments</li>
+            </ul>
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Dev Environments
+
+            - Interpret/Compile
+            - Run Automated Test Suites (Integration/Isolation Tests)
+            - Run & Manually Test/Debug the App
+            - Edit Code
+            - External Dependencies (PostgreSQL, MySQL, Redis, Cassandra,
+            etc.)
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Virtual Dev Environments
+
+            - pros & cons of virtualizing dev environment
+
+            ### Define
+
+            ### Why these are useful
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## CI Environments
+
+            - Interpret/Compile
+            - Run Automated Test Suites (Integration/Isolation Tests)
+            - External Dependencies (PostgreSQL, MySQL, Redis, Cassandra,
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Virtual Continuous Integration Environments
+
+            - pros & cons of virtualizing ci environments
+
+            ### Define
+
+            ### Why these are useful
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ### How Would You Do It?
+            #### Create Virtual Dev Environments
+
+            - what would it look like
+            - what problems would be run into, pose question to audience
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ### Show real world examples of issues around this, lookt at Rails
+            VM and Discourse VM, maybe excercism.io.
+
+            - [discourse](https://github.com/discourse/discourse)
+            - [rails-dev-box](https://github.com/rails/rails-dev-box)
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ### How Would You Do It?
+            #### Create Virtual CI Environments
+
+            - what would it look like
+            - what problems would be run into, pose question to audience
+					</script>
+        </section>
+
+        <section data-background="images/travis-ci.jpeg">
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ### ReachLocal Problems
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## There Are Only
+            
+            <img src="images/next-gen-spork.jpg" alt="Spork" />
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Enter
+
+            <a href="http://boxci.io"><img src="images/boxci-logo-md.png" /></a>
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## What is it?
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## How do we get it?
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## How to use it?
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Demo
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## The Benefits
+					</script>
+        </section>
+
+        <!-- Concept, I am Morpheus, and the audience is Neo. When I am about
+        to present BoxCI and go into BoxCI details I give them the option of
+        choosing either thaking the blue pill or the red pill. The blue pill
+        takes them down the path without BoxCI and the red pill takes them
+        down the path with BoxCI. When they get to the end of the first one
+        they chose it should then take them back and show them what it would
+        be like with the other. -->
+        <section data-markdown>
+					<script type="text/template">
+            ### Credit
+
+            <q cite="">
+              &ldquo;Standing on the shoulders of giants&rdquo;
+            </q>
+
+            - [Mitchell Hashimoto](http://github.com/mitchellh) -
+            Vagrant & Vagrant AWS Provider
+            - [@cloudbau](http://github.com/cloudbau) - Vagrant OpenStack
+            Provider
+            - [Brian Miller](http://github.com/brimil01) - Initial spike
+            - [Russell Cloak](http://github.com/russCloak) - Port of spike to a gem
+            - Renee De Ponte - presentation concept
+					</script>
+        </section>
+
+        <section>
+          <video data-autoplay width="640" height="360">
+            <source src="videos/matrix_system_failure_hd.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## I Know it is Corny
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            # Thank You
+
+            ## Questions?
+					</script>
+        </section>
+
+        <!-- The Matrix, the world around us -->
+        <!-- The Oracle, she is a guide that can help you find the path -->
+        <!-- Nebuchadnezer, ship with core that broadcasts signal to hack into
+        the The Matrix, this really parallels to the host machine because you
+        vagrant ssh -->
+        <!-- The Construct, the loading program, anything they need weapons
+        -->
+
+        <!-- The Oracle, mother of the matrix, proficised the one born in the matrix's return -->
+
+        <!-- Unfortionatly no one can be told what the matrix is. You have to
+        see it for yourself -->
+
+        <!-- You take the blue pill, the story ends and you believe whatever
+        you want to believe -->
+
+        <!-- You take the red pill, you stay in wonderland and see how deep
+        the rabbit hole goes -->
+
+        <!-- Remember all I offer is the truth and nothing more -->
+
+        <!-- Wake up Neo -->
+        <!-- The Matrix has you -->
+        <!-- Follow the whit rabbit -->
+        <!-- Knock nock, Knock nock -->
+
+        <!-- Neo follows the white rabbit and meets Trinity at the club -->
+        <!-- Its the question that drives us. -->
+
+        <!-- Morpheus -->
+
+        <!-- The One (aka Neo) - might map to Vagrant, maybe it is the
+             viewer/presenties -->
+        <!-- Tinity? -->
+        <!-- Hardline, pulls them out of the matrix -->
+
+        <!-- Black Cat, deja vu, glitch in the matrix, happens when they
+             change something -->
+
+        <!-- Architect, father of the matrix, is the one who built the matrix.
+        Parallels.-->
+
+        
 				<section>
 					<h1>Reveal.js</h1>
 					<h3>HTML Presentations Made Easy</h3>
