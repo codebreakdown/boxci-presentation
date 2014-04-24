@@ -202,7 +202,8 @@
         </section>
 
         <section>
-          <h2>Dev Environments</h2>
+          <h2>Dev Environment</h2>
+          <h3>Requirements</h3>
 
           <ul class="fragment">
             <li>Interpretation or Compilation</li>
@@ -216,6 +217,7 @@
 
         <section>
           <h2>CI Environments</h2>
+          <h3>Requirements</h3>
 
           <ul class="fragment">
             <li>Interpretation or Compilation</li>
@@ -265,9 +267,17 @@
             vagrant init
             # configure base box image
             ```
-            Vagrantfile
+
+            Vagrantfile snippet
 
             ```ruby
+            config.vm.box = "precise64"
+            config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+            config.vm.provider :vmware_fusion do |v, override|
+              override.vm.box = "precise64_vmware"
+              override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+            end
             ```
 					</script>
         </section>
@@ -282,9 +292,14 @@
             # configure base box image
             # configure networking
             ```
-            Vagrantfile
+
+            port forward, private network, or public network
+
+            Vagrantfile snippet
 
             ```ruby
+            require 'resolv'
+            config.vm.network :private_network, ip: Resolv.getaddress('capture.services.dev')
             ```
 					</script>
         </section>
@@ -313,13 +328,24 @@
             # configure base box image
             # configure networking
             # configure provisioning
-            vagrant up
-            vagrant provision
             ```
-            Vagrantfile
+
+            Vagrantfile snippet
 
             ```ruby
+            config.vm.provision "puppet" do |puppet|
+              # puppet.options = "--verbose --debug"
+              puppet.facter = {
+                "service"      => "capture",
+                "vagrant_user" => "vagrant",
+                "vagrant_home" => "/home/vagrant"
+              }
+              puppet.module_path = "puppet/modules"
+              puppet.manifests_path = "puppet/manifests"
+              puppet.manifest_file  = "capture_api.pp"
+            end
             ```
+            create base puppet manifests & directory structure
 					</script>
         </section>
 
@@ -336,10 +362,14 @@
             vagrant up
             vagrant provision
             ```
-            Vagrantfile
 
-            ```ruby
-            ```
+            - Research Puppet modules and writing manifests
+            - Modify manifests to add language interpreter
+            - Test the updated manifests
+
+            <br>
+
+            ## Rinse and Repeat
 					</script>
         </section>
 
@@ -358,17 +388,23 @@
 
         <section data-markdown>
 					<script type="text/template">
-            ## Rails Dev Box
+            ## [Rails Dev Box](https://github.com/rails/rails-dev-box)
 
-            - [rails-dev-box](https://github.com/rails/rails-dev-box)
+            - Vagrant
+            - Puppet
+            - Separate repo
+            - Port Forward
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Discourse Dev Box
+            ## [Discourse Dev Box](https://github.com/discourse/discourse)
 
-            - [discourse](https://github.com/discourse/discourse)
+            - Vagrant
+            - Chef
+            - App repo
+            - Port Forward
 					</script>
         </section>
 
@@ -483,7 +519,11 @@
 
         <section data-markdown>
 					<script type="text/template">
-            ## Conclusion
+            # Conclusion
+
+            ### [boxci.io](http://boxci.io)
+            ### [GitHub Repo](https://github.com/reachlocal/boxci)
+            ### [Issues](https://github.com/reachlocal/boxci/issues)
 					</script>
         </section>
 
