@@ -55,20 +55,20 @@
 					</script>
 				</section>
 
+        <section> 
+          <h2>Virtual Machines</h2>
 
-        <section data-markdown>
-					<script type="text/template">
-            ## Virtual Machines
+          <h3 class="fragment">Definition?</h3>
 
-            <p>
-              <blockquote cite="http://en.wikipedia.org/wiki/Virtual_machine">
-                &ldquo;A virtual machine (VM) is a software-based emulation of
-                a computer. Virtual machines operate based on computer
-                architecture and functions of real or hypothetical
-                computer.&rdquo;
-              </blockquote>
-            </p>
-					</script>
+          <p>
+            <blockquote cite="http://en.wikipedia.org/wiki/Virtual_machine"
+              class="fragment">
+              &ldquo;A virtual machine (VM) is a software-based emulation of
+              a computer. Virtual machines operate based on computer
+              architecture and functions of real or hypothetical
+              computer.&rdquo;
+            </blockquote>
+          </p>
         </section>
 
         <section data-markdown>
@@ -77,32 +77,58 @@
 					</script>
         </section>
         
-        <section data-markdown
+        <section
           data-background="images/desktop-maclike-screenshot1440-704485.jpg">
-					<script type="text/template">
-            ## Desktop Virtualization Software
+          <div style="background-color: black; opacity: .4; padding: 50px;">
+            <h2>Desktop Virtualization Software</h2>
 
-            - [VirtualBox](http://www.virtualbox.org/)
-            - [VMware Fusion](http://www.vmware.com/products/fusion/)
+            <ul>
+              <li><a href="http://www.virtualbox.org/">VirtualBox</a></li>
+              <li><a href="http://www.vmware.com/products/fusion/">VMware Fusion</a></li>
+            </ul>
 
             <br>
-            <small>Image from
-            [gastown.biz](http://www.gastown.biz/blog/uploaded_images/desktop-maclike-screenshot1440-704485.jpg)
+            <small>Image from <a href="http://www.gastown.biz/blog/uploaded_images/desktop-maclike-screenshot1440-704485.jpg">gastown.biz</a>
             </small>
+          </div>
+        </section>
+
+        <section data-background="images/cloud.jpg">
+          <div style="background-color: black; opacity: .4; padding: 50px;">
+            <h2>Cloud Virtualization Services</h2>
+
+            <ul>
+              <li><a href="http://aws.amazon.com/ec2">AWS EC2</a></li>
+              <li><a href="http://www.rackspace.com/cloud/servers/">Rackspace</a></li>
+              <li><a href="https://www.digitalocean.com/">Digital Ocean</a></li>
+            </ul>
+
+            <br>
+            <small>
+              Image from
+              <a href="http://www.wamsinc.com/tag/cloud-computing/">wamsinc.com</a>
+            </small>
+          </div>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Pros
+
+            - isolation
+            - consistency
+            - developer bootstrapping
+            - resource outsourcing
+            - cheaper
 					</script>
         </section>
 
-        <section data-markdown data-background="images/cloud.jpg">
+        <section data-markdown>
 					<script type="text/template">
-            ## Cloud Virtualization Services
+            ## Cons
 
-            - [AWS EC2](http://aws.amazon.com/ec2)
-            - [Rackspace](http://www.rackspace.com/cloud/servers/)
-            - [Digital Ocean](https://www.digitalocean.com/)
-
-            <br>
-            <small>Image from
-            [wamsinc.com](http://www.wamsinc.com/tag/cloud-computing/)</small>
+            - performance
+            - resource usage
 					</script>
         </section>
 
@@ -147,139 +173,208 @@
           </small>
         </section>
 
+        <section data-background="images/matrix_field.jpg">
+          <h2>State of the World</h2>
+
+          <div style="background-color: black; opacity: .5; padding: 50px;">
+            A few people have woken up.
+          </div>
+        </section>
+
+        <section data-background="images/matrix_crew.png">
+          <h2>Who?</h2>
+
+          <p class="fragment">
+            The creators of Vagrant, Chef, and Puppet.
+          </p>
+        </section>
+
         <section data-markdown>
 					<script type="text/template">
-            # State of the World
+            # What have they shown us?
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Uses?
+            # Environment bootstrapping doesn't have to suck
+					</script>
+        </section>
 
-            <ul>
-              <li class="fragment">Dev Environments</li>
-              <li class="fragment">CI Environments</li>
-            </ul>
+        <section>
+          <h2>Dev Environments</h2>
+
+          <ul class="fragment">
+            <li>Interpretation or Compilation</li>
+            <li>Run Integration Tests</li>
+            <li>Run Isolation Tests</li>
+            <li>External Dependencies</li>
+            <li>Manually Test/Debug</li>
+            <li>Edit Code</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>CI Environments</h2>
+
+          <ul class="fragment">
+            <li>Interpretation or Compilation</li>
+            <li>Run Integration Tests</li>
+            <li>Run Isolation Tests</li>
+            <li>External Dependencies</li>
+          </ul>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Building
+            ### a
+            ### Virtual Dev Environment
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Dev Environments
+            ## Vagrant Init
 
-            - Interpret/Compile
-            - Run Automated Test Suites (Integration/Isolation Tests)
-            - Run & Manually Test/Debug the App
-            - Edit Code
-            - External Dependencies (PostgreSQL, MySQL, Redis, Cassandra,
-            etc.)
+            ```shell
+            cd project_dir
+            vagrant init
+            ```
+            Vagrantfile
+
+            ```ruby
+            # -*- mode: ruby -*-
+            # vi: set ft=ruby :
+
+            VAGRANTFILE_API_VERSION = "2"
+
+            Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+              config.vm.box = "base"
+            end
+            ```
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Virtual Dev Environments
+            ## Configure Base Box Image
 
-            ### Pros
+            ```shell
+            cd project_dir
+            vagrant init
+            # configure base box image
+            ```
+            Vagrantfile
 
-            - isolation
-            - consistency
-            - resets
-            - developer bootstrapping
+            ```ruby
+            ```
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Virtual Dev Environments
+            ## Configure Networking
 
-            ### Cons
+            ```shell
+            cd project_dir
+            vagrant init
+            # configure base box image
+            # configure networking
+            ```
+            Vagrantfile
 
-            - performance
-            - resource usage
+            ```ruby
+            ```
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## CI Environments
+            ## Configure Provisioning
+            ### But First Decide
 
-            - Interpret/Compile
-            - Run Automated Test Suites (Integration/Isolation Tests)
-            - External Dependencies (PostgreSQL, MySQL, Redis, Cassandra,
+            - Puppet / Chef / Bash?
+            - manifests / recipes?
+              - app repo or separate repo?
+              - directory structure?
+              - naming scheme?
+              - include binaries?
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Virtual CI Environments
+            ## Configure Provisioning
 
-            ### Pros
+            ```shell
+            cd project_dir
+            vagrant init
+            # configure base box image
+            # configure networking
+            # configure provisioning
+            vagrant up
+            vagrant provision
+            ```
+            Vagrantfile
 
-            - isolation
-            - consistency
-            - resets
+            ```ruby
+            ```
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Virtual CI Environments
+            ## Iterate on Configuration Management
 
-            ### Cons
+            ```shell
+            cd project_dir
+            vagrant init
+            # configure base box image
+            # configure networking
+            # configure provisioning
+            vagrant up
+            vagrant provision
+            ```
+            Vagrantfile
 
-            - performance
-            - resource usage
+            ```ruby
+            ```
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Virtual Dev Environments
-            ### How Would You Do It?
-
-            - what would it look like
-            - what problems would be run into, pose question to audience
+            ## Couple Days Later...
+            ## We Have a Virtual Dev Box
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Virtual Dev Environments
-            ### How Would You Do It?
-
-            - should we use Vagrant?
-            - how should we configure Vagrant
-            - how should we use Puppet or Chef
-            - how should be structure our Configuration Management stuff
-            - how should we configure our environments
-            - should we include this as part of our application repo or be a
-            separate repo?
-            - should we include binaries as part of Configuration Management
-            stuff in our repo?
-            - what would it look like
-            - what problems would be run into, pose question to audience
+            ## Real World Examples
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ### Show real world examples of issues around this, lookt at Rails
-            VM and Discourse VM, maybe excercism.io.
+            ## Rails Dev Box
 
-            - [discourse](https://github.com/discourse/discourse)
             - [rails-dev-box](https://github.com/rails/rails-dev-box)
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ### How Would You Do It?
-            #### Create Virtual CI Environments
+            ## Discourse Dev Box
 
-            - what would it look like
-            - what problems would be run into, pose question to audience
+            - [discourse](https://github.com/discourse/discourse)
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## Virtual CI Environments
 					</script>
         </section>
 
@@ -288,23 +383,41 @@
 
         <section data-markdown>
 					<script type="text/template">
-            ### ReachLocal Problems
+            ## How many of you have setup virtual dev/ci environments?
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## There Are Only
-            
-            <img src="images/next-gen-spork.jpg" alt="Spork" />
+            ## Maybe thats because it sucks!
 					</script>
+        </section>
+
+        <section data-background="images/matrix_agents.jpg">
+          <h2>ReachLocal Problems</h2>
+
+          <div style="background-color: black; opacity: .4; padding: 50px;">
+            <ul>
+              <li>RelEng / Bamboo</li>
+              <li>Micro-Services</li>
+              <li>Diverse Set of Environments</li>
+                <ul>
+                  <li>Java/Grails/Spring/?</li>
+                  <li>Ruby/Rails</li>
+                  <li>PHP/Perl/Python</li>
+                </ul>
+              <li>Inconsistency</li>
+            </ul>
+          </div>
+        </section>
+
+        <section data-background="images/matrix_free_your_mind.jpg">
+          <h2>Free Your Mind</h2>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
-            ## Enter
-
-            <a href="http://boxci.io"><img src="images/boxci-logo-md.png" /></a>
+            <a href="http://boxci.io"><img src="images/boxci-logo-lg.png" /></a>
 					</script>
         </section>
 
@@ -317,12 +430,48 @@
         <section data-markdown>
 					<script type="text/template">
             ## How do we get it?
+
+            ```shell
+            gem install boxci
+            ```
 					</script>
         </section>
 
         <section data-markdown>
 					<script type="text/template">
             ## How to use it?
+
+            ### 3 simple commands
+
+            ```shell
+            boxci init
+            boxci build
+            boxci test
+            ```
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## BoxCI Init
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## BoxCI Build
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## BoxCI Test
+					</script>
+        </section>
+
+        <section data-markdown>
+					<script type="text/template">
+            ## The Power of BoxCI?
 					</script>
         </section>
 
@@ -334,17 +483,47 @@
 
         <section data-markdown>
 					<script type="text/template">
-            ## The Benefits
+            ## Conclusion
 					</script>
         </section>
 
-        <!-- Concept, I am Morpheus, and the audience is Neo. When I am about
-        to present BoxCI and go into BoxCI details I give them the option of
-        choosing either thaking the blue pill or the red pill. The blue pill
-        takes them down the path without BoxCI and the red pill takes them
-        down the path with BoxCI. When they get to the end of the first one
-        they chose it should then take them back and show them what it would
-        be like with the other. -->
+        <section>
+          <p>
+            I don't know the future of BoxCI
+          </p>
+          <p class="fragment">
+            I didn't come here to tell you how this is going to end
+          </p>
+          <p class="fragment">
+            I came here to tell you how its going to begin
+          </p>
+        </section>
+
+        <section data-background="images/matrix_red_pill_blue_pill.jpg">
+            <h2>
+              where we go from here is a choice I leave to you
+            </h2>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </section>
+        
+        <section data-markdown>
+					<script type="text/template">
+            # Thank You
+
+            ## Questions?
+					</script>
+        </section>
+
         <section data-markdown>
 					<script type="text/template">
             ### Credit
@@ -359,384 +538,9 @@
             Provider
             - [Brian Miller](http://github.com/brimil01) - Initial spike
             - [Russell Cloak](http://github.com/russCloak) - Port of spike to a gem
-            - Renee De Ponte - presentation concept
+            - [Renee De Ponte](http://www.imdb.com/name/nm1717589/) - Presentation concept
 					</script>
         </section>
-
-        <section>
-          <video data-autoplay width="640" height="360">
-            <source src="videos/matrix_system_failure_hd.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </section>
-
-        <section data-markdown>
-					<script type="text/template">
-            ## I Know it is Corny
-					</script>
-        </section>
-
-        <section data-markdown>
-					<script type="text/template">
-            # Thank You
-
-            ## Questions?
-					</script>
-        </section>
-
-        <!-- The Matrix, the world around us -->
-        <!-- The Oracle, she is a guide that can help you find the path -->
-        <!-- Nebuchadnezer, ship with core that broadcasts signal to hack into
-        the The Matrix, this really parallels to the host machine because you
-        vagrant ssh -->
-        <!-- The Construct, the loading program, anything they need weapons
-        -->
-
-        <!-- The Oracle, mother of the matrix, proficised the one born in the matrix's return -->
-
-        <!-- Unfortionatly no one can be told what the matrix is. You have to
-        see it for yourself -->
-
-        <!-- You take the blue pill, the story ends and you believe whatever
-        you want to believe -->
-
-        <!-- You take the red pill, you stay in wonderland and see how deep
-        the rabbit hole goes -->
-
-        <!-- Remember all I offer is the truth and nothing more -->
-
-        <!-- Wake up Neo -->
-        <!-- The Matrix has you -->
-        <!-- Follow the whit rabbit -->
-        <!-- Knock nock, Knock nock -->
-
-        <!-- Neo follows the white rabbit and meets Trinity at the club -->
-        <!-- Its the question that drives us. -->
-
-        <!-- Morpheus -->
-
-        <!-- The One (aka Neo) - might map to Vagrant, maybe it is the
-             viewer/presenties -->
-        <!-- Tinity? -->
-        <!-- Hardline, pulls them out of the matrix -->
-
-        <!-- Black Cat, deja vu, glitch in the matrix, happens when they
-             change something -->
-
-        <!-- Architect, father of the matrix, is the one who built the matrix.
-        Parallels.-->
-
-        
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?#/themes">Default</a> -
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> <br>
-						<a href="?theme=moon#/themes">Moon</a> -
-						<a href="?theme=solarized#/themes">Solarized</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
-
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
-
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-current-blue">highlight-current-blue</p>
-					</section>
-				</section>
-
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
-
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
 
 			</div>
 
